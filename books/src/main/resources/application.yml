@@ -1,7 +1,7 @@
 spring:
   datasource:
     driver-class-name: com.mysql.cj.jdbc.Driver
-    url: jdbc:mysql://localhost:3306/students_db
+    url: jdbc:mysql://localhost:3306/books_db
     username: your_user
     password: your_password
   jpa:
@@ -9,4 +9,4 @@ spring:
       ddl-auto: update
     database-platform: org.hibernate.dialect.MySQL8Dialect
 server:
-  port: 8080
+  port: 8090

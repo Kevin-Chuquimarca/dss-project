@@ -1,5 +1,33 @@
+SONARQUBE STUDENTS SERVICE
+
 mvn clean verify sonar:sonar \
   -Dsonar.projectKey=students \
   -Dsonar.projectName='students' \
   -Dsonar.host.url=http://localhost:9000 \
   -Dsonar.token=sqp_d68243413d3719cddab718bfb6097966a451e12f
+  
+------------------------------------------------------------------------------------------------
+SONARQUBE BOOKS SERVICE
+
+mvn clean verify sonar:sonar \
+  -Dsonar.projectKey=books \
+  -Dsonar.projectName='books' \
+  -Dsonar.host.url=http://localhost:9000 \
+  -Dsonar.token=sqp_c5567a6786c612c51d7d612097a9ceaa84f15c66
+  
+------------------------------------------------------------------------------------------------
+STUDENTS SERVICE
+
+1. CREAR LA BASE DE DATOS CON EL ARCHIVO: ./db/students.sql
+2. CAMBIAR EL USUARIO Y CONTRASENA DE LA BD EN EL ARCHIVO: ./students/src/main/resources/application.yml
+3. INGRESAR A LA CARPETA DEL PROYECTO: cd ./students
+4. EJECUTAR LA APLICACION: mvn spring-boot:run
+
+------------------------------------------------------------------------------------------------
+BOOKS SERVICE
+
+1. CREAR LA BASE DE DATOS CON EL ARCHIVO: ./db/students.sql
+2. CAMBIAR EL USUARIO Y CONTRASENA DE LA BD EN EL ARCHIVO: ./books/src/main/resources/application.yml
+3. INGRESAR A LA CARPETA DEL PROYECTO: cd ./books
+4. EJECUTAR LA APLICACION: mvn spring-boot:run
+
