@@ -42,7 +42,7 @@ create table book
 create table loan
 (
    cod                  int not null auto_increment,
-   isbn                 varchar(13) not null,
+   isbn                 varchar(17) not null,
    date_loan            date not null,
    date_return          date not null,
    state                varchar(20) not null,
@@ -70,3 +70,8 @@ values ('978-1-5011-9697-9', 1, 'Orgullo y prejuicio'),
        ('978-0-307-27941-6', 3, 'Cien años de soledad'),
        ('978-0-307-38743-5', 3, 'El amor en los tiempos del cólera'),
        ('978-0-307-38744-2', 3, 'El otoño del patriarca');
+       
+insert into loan (isbn, date_loan, date_return, state, id_banner)
+values 
+('978-1-5011-9697-9', '2024-02-22', '2024-03-22', 'loaned', 'L00384629'),
+('978-1-5011-9696-2', '2024-02-20', '2024-03-20', 'loaned', 'L00384629'); 
