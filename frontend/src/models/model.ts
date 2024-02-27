@@ -18,3 +18,19 @@ export interface Loan {
   state: string
   idBanner: string
 }
+
+export interface Student {
+  idBanner: string
+  name: string
+  lastname: string
+  username: string
+  password: string
+  email: string
+  phone: string
+  roles: string
+}
+
+export interface User {
+  username: string
+  password: string
+}

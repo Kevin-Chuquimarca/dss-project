@@ -77,8 +77,8 @@ export default function AddLoanModal(props: {
             className="border rounded-lg p-3 w-full"
             {...register('state', { required: true })}
           >
-            <option value="loaned">loaned</option>
-            <option value="returned">returned</option>
+            <option value="prestado">prestado</option>
+            <option value="devuelto">devuelto</option>
           </select>
           <label className="flex" htmlFor="idBanner">
             ID Banner

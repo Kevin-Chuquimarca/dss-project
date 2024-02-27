@@ -1,3 +1,9 @@
+import Login from '@/components/students/login'
+
 export default function Home() {
-  return <main>HELLO WORLD</main>;
+  return (
+    <main>
+      <Login />
+    </main>
+  )
 }
