@@ -18,16 +18,22 @@
     @apply absolute w-10 h-10 top-4 right-2 bg-transparent rounded-lg cursor-pointer flex items-center justify-center font-medium text-2xl hover:bg-red-800 after:content-['x'];
   }
   .btn-add {
-    @apply bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
+    @apply bg-[#FEAF00] hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
   }
   .btn-edit {
-    @apply bg-yellow-400 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
+    @apply bg-[#FEAF00] hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
   }
   .btn-delete {
-    @apply bg-yellow-400 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
+    @apply bg-[#FEAF00] hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded-lg;
   }
   .btn-cancel {
     @apply bg-white hover:bg-red-800  font-bold py-2 px-4 border rounded-lg;
+  }
+  .btn-link-nav {
+    @apply hover:bg-[#FEAF00] hover:text-white py-2 px-4 rounded-lg;
+  }
+  .btn-exit {
+    @apply bg-[#FEAF00] hover:bg-red-600 text-white text-center font-bold py-2 px-4 rounded-lg;
   }
 }
 

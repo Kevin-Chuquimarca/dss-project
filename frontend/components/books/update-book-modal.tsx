@@ -1,9 +1,9 @@
 import { Author, Book } from '@/src/models/model'
-import ModalTemplate from '../customs/modal-template'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
 import { getAuthors, updateBook } from '@/src/utils/providers/provider'
 import { BtnSubmit } from '../customs/btn-submit'
+import ModalTemplateImg from '../customs/modal-template-img'
 
 export default function UpdateBookModal(props: {
   readonly setBooks: Dispatch<SetStateAction<Book[]>>
@@ -29,9 +29,9 @@ export default function UpdateBookModal(props: {
   }, [])
 
   return (
-    <ModalTemplate
-      textButton="Editar"
-      btnLayout="btn-edit"
+    <ModalTemplateImg
+      nameSVG="edit"
+      alt="Actualizar"
       showModal={showModal}
       setShowModal={setShowModal}
     >
@@ -91,6 +91,6 @@ export default function UpdateBookModal(props: {
           </button>
         </div>
       </form>
-    </ModalTemplate>
+    </ModalTemplateImg>
   )
 }
