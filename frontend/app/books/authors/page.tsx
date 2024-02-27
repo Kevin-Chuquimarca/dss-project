@@ -1,3 +1,9 @@
+import Authors from "@/components/authors/authors";
+
 export default function AuthorsPage() {
-  return <main>HELLO WORLD</main>;
+  return (
+    <main>
+      <Authors/>
+    </main>
+  )
 }

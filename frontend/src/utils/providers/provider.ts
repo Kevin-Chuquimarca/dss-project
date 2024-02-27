@@ -62,6 +62,46 @@ export async function getAuthors() {
   }
 }
 
+export async function addAuthor(author: Omit<Author, 'id'>) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/authors', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(author),
+    })
+    if (!res.ok) throw new Error('Error al agregar el autor')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export async function updateAuthor(author: Author) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/authors', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(author),
+    })
+    if (!res.ok) throw new Error('Error al actualizar el autor')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export async function deleteAuthor(id: number) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/authors/' + id, {
+      method: 'DELETE',
+    })
+    if (!res.ok) throw new Error('Error al eliminar el autor')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
 
 export async function getLoans() {
   try {
