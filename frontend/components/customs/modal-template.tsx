@@ -1,27 +1,28 @@
 'use client'
 
-import { useState } from 'react'
+import { Dispatch, SetStateAction } from 'react'
 import { createPortal } from 'react-dom'
 
 interface PortalExampleProps {
   readonly children: React.ReactNode
   readonly textButton: string
   readonly btnLayout?: string
+  readonly showModal: boolean
+  readonly setShowModal: Dispatch<SetStateAction<boolean>>
 }
 
 export default function ModalTemplate(props: PortalExampleProps) {
-  const [showModal, setShowModal] = useState(false)
-  const onClose = () => setShowModal(false)
+  const onClose = () => props.setShowModal(false)
 
   return (
     <>
       <button
         className={props.btnLayout ?? 'btn-success'}
-        onClick={() => setShowModal(true)}
+        onClick={() => props.setShowModal(true)}
       >
         {props.textButton}
       </button>
-      {showModal &&
+      {props.showModal &&
         createPortal(
           <div className="modal-backdrop">
             <dialog className="modal">

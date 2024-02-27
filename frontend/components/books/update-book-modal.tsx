@@ -2,21 +2,22 @@ import { Author, Book } from '@/src/models/model'
 import ModalTemplate from '../customs/modal-template'
 import { SubmitHandler, useForm } from 'react-hook-form'
 import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { addBook, getAuthors } from '@/src/utils/providers/provider'
+import { getAuthors, updateBook } from '@/src/utils/providers/provider'
 import { BtnSubmit } from '../customs/btn-submit'
 
-export default function AddBookModal(props: {
+export default function UpdateBookModal(props: {
   readonly setBooks: Dispatch<SetStateAction<Book[]>>
+  readonly book: Book
 }) {
   const [showModal, setShowModal] = useState(false)
   const [authors, setAuthors] = useState<Author[]>([])
   const { register, handleSubmit, formState } = useForm<Book>()
   const onSubmit: SubmitHandler<Book> = (data) => {
-    addBook(data)
+    updateBook(data)
       .then(() => {
         props.setBooks((prev) => [...prev, data])
         setShowModal(!showModal)
-        alert('Libro agregado')
+        alert('Libro Actualizado')
       })
       .catch((error) => alert(error))
   }
@@ -29,13 +30,13 @@ export default function AddBookModal(props: {
 
   return (
     <ModalTemplate
-      textButton="AGREGAR LIBRO"
-      btnLayout="btn-add"
+      textButton="Editar"
+      btnLayout="btn-edit"
       showModal={showModal}
       setShowModal={setShowModal}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="font-bold text-xl">Nuevo Libro</h3>
+        <h3 className="font-bold text-xl">Actualizar Libro</h3>
         <p>Crear un nuevo libro</p>
         <hr className="my-5" />
         <div className="space-y-3">
@@ -45,7 +46,8 @@ export default function AddBookModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. 325-5215-256834"
-            {...register('isbn', { required: true })}
+            readOnly
+            {...register('isbn', { required: true, value: props.book.isbn })}
           />
           {formState.errors.isbn && <span>This field is required</span>}
           <label className="flex" htmlFor="title">
@@ -54,7 +56,7 @@ export default function AddBookModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. Viaje al Centro de la Tierra"
-            {...register('title', { required: true })}
+            {...register('title', { required: true, value: props.book.title })}
           />
           {formState.errors.title && <span>This field is required</span>}
           <label className="flex" htmlFor="id">
@@ -62,7 +64,7 @@ export default function AddBookModal(props: {
           </label>
           <select
             className="border rounded-lg p-3 w-full"
-            {...register('id', { required: true })}
+            {...register('id', { required: true, value: props.book.id })}
           >
             {authors.map((author) => (
               <option key={author.id} value={author.id}>

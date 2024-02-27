@@ -1,9 +1,10 @@
 'use client'
 
 import { Book } from '@/src/models/model'
-import { getBooks } from '@/src/utils/providers/provider'
+import { deleteBook, getBooks } from '@/src/utils/providers/provider'
 import { useEffect, useState } from 'react'
 import AddBookModal from './add-book-modal'
+import UpdateBookModal from './update-book-modal'
 
 export default function Books() {
   const [books, setBooks] = useState<Book[]>([])
@@ -14,11 +15,20 @@ export default function Books() {
       .catch((error) => alert(error))
   }, [])
 
+  function handleDelete(isbn: string) {
+    deleteBook(isbn)
+      .then(() => {
+        setBooks((prev) => prev.filter((book) => book.isbn !== isbn))
+        alert('Libro eliminado')
+      })
+      .catch((error) => alert(error))
+  }
+
   return (
     <>
       <div className="flex flex-row justify-between m-10">
         <h2 className="font-bold text-2xl">Libros</h2>
-        <AddBookModal />
+        <AddBookModal setBooks={setBooks} />
       </div>
       <table className="mx-auto w-fit text-center">
         <thead>
@@ -36,8 +46,13 @@ export default function Books() {
               <td>{book.id}</td>
               <td>{book.title}</td>
               <td>
-                <button className="btn-edit">Editar</button>
-                <button className="btn-delete">Eliminar</button>
+                <UpdateBookModal setBooks={setBooks} book={book} />
+                <button
+                  className="btn-delete"
+                  onClick={() => handleDelete(book.isbn)}
+                >
+                  Eliminar
+                </button>
               </td>
             </tr>
           ))}
