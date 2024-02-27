@@ -2,3 +2,32 @@
 @tailwind components;
 @tailwind utilities;
 
+@layer components {
+  .modal-backdrop {
+    @apply fixed top-0 left-0 right-0 bottom-0 flex justify-center items-center z-50;
+  }
+  .modal {
+    @apply relative flex flex-col justify-center items-center rounded-xl;
+  }
+
+  .modal-body {
+    @apply bg-white px-12 py-6 rounded-lg;
+  }
+
+  .close-button {
+    @apply absolute w-10 h-10 top-4 right-2 bg-transparent rounded-lg cursor-pointer flex items-center justify-center font-medium text-2xl hover:bg-red-800 after:content-['x'];
+  }
+  .btn-add {
+    @apply bg-yellow-600 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded;
+  }
+  .btn-edit {
+    @apply bg-yellow-400 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded;
+  }
+  .btn-delete {
+    @apply bg-yellow-400 hover:bg-yellow-800 text-white font-bold py-2 px-4 rounded;
+  }
+}
+
+.modal-backdrop {
+  background-color: rgba(0, 0, 0, 0.7);
+}
