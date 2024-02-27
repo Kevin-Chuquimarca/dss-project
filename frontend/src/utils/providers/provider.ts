@@ -1,5 +1,5 @@
 import { BOOKS_API_URL } from '@/src/libs/contants'
-import { Author, Book } from '@/src/models/model'
+import { Author, Book, Loan } from '@/src/models/model'
 
 export async function getBooks() {
   try {
@@ -57,6 +57,60 @@ export async function getAuthors() {
     const res = await fetch(BOOKS_API_URL + '/authors')
     const data: Author[] = await res.json()
     return data
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+
+export async function getLoans() {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/loans')
+    const data: Loan[] = await res.json()
+    return data
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+
+export async function addLoan(loan: Omit<Loan, 'cod'>) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/loans', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loan),
+    })
+    if (!res.ok) throw new Error('Error al agregar el préstamo')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+
+export async function updateLoan(loan: Loan) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/loans', {
+      method: 'PUT',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(loan),
+    })
+    if (!res.ok) throw new Error('Error al actualizar el préstamo')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export async function deleteLoan(cod: number) {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/loans/' + cod, {
+      method: 'DELETE',
+    })
+    if (!res.ok) throw new Error('Error al eliminar el préstamo')
   } catch (error: any) {
     throw new Error(error)
   }

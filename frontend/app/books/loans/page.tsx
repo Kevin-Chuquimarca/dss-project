@@ -1,3 +1,9 @@
+import Loans from "@/components/loans/loans";
+
 export default function LoansPage() {
-  return <main>HELLO WORLD</main>;
+  return (
+    <main>
+      <Loans />
+    </main>
+  )
 }

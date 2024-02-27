@@ -9,3 +9,12 @@ export interface Author {
   name: string
   lastname: string
 }
+
+export interface Loan {
+  cod: number
+  isbn: string
+  dateLoan: string
+  dateReturn: string
+  state: string
+  idBanner: string
+}
