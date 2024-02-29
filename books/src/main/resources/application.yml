@@ -10,3 +10,8 @@ spring:
     database-platform: org.hibernate.dialect.MySQL8Dialect
 server:
   port: 8090
+  ssl:
+    key-store: keystore.p12
+    key-store-password: kschuquimarca
+    key-store-type: PKCS12
+    key-alias: tomcat
