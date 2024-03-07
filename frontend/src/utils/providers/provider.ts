@@ -1,5 +1,5 @@
 import { BOOKS_API_URL } from '@/src/libs/contants'
-import { Author, Book, Loan } from '@/src/models/model'
+import { Author, Book, BookAndAuthor, Loan } from '@/src/models/model'
 
 export async function getBooks() {
   try {
@@ -113,7 +113,6 @@ export async function getLoans() {
   }
 }
 
-
 export async function addLoan(loan: Omit<Loan, 'cod'>) {
   try {
     const res = await fetch(BOOKS_API_URL + '/loans', {
@@ -128,7 +127,6 @@ export async function addLoan(loan: Omit<Loan, 'cod'>) {
     throw new Error(error)
   }
 }
-
 
 export async function updateLoan(loan: Loan) {
   try {
@@ -151,6 +149,16 @@ export async function deleteLoan(cod: number) {
       method: 'DELETE',
     })
     if (!res.ok) throw new Error('Error al eliminar el préstamo')
+  } catch (error: any) {
+    throw new Error(error)
+  }
+}
+
+export async function getBooksAndAuthors() {
+  try {
+    const res = await fetch(BOOKS_API_URL + '/books-authors')
+    const data: BookAndAuthor[] = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }

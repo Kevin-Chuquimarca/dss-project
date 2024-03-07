@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: mysql-db-d
+spec:
+  selector:
+    matchLabels:
+      app: mysql-db-p
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: mysql-db-p
+    spec:
+      containers:
+        - name: mysql-db-c
+          image: mysql
+          ports:
+            - containerPort: 3306
+          env:
+            - name: MYSQL_ROOT_PASSWORD
+              value: "0936"

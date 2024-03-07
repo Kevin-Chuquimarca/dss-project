@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: Service
+metadata:
+  name: books-service-s
+spec:
+  type: LoadBalancer
+  selector:
+    app: books-service-p
+  ports:
+    - protocol: TCP
+      port: 8090
+      targetPort: 8090

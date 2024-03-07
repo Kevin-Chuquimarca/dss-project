@@ -1,4 +1,4 @@
-import Login from '@/components/students/login'
+import Login from '@/components/customs/login'
 
 export default function Home() {
   return (

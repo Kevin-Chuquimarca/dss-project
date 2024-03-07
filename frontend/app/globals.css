@@ -29,6 +29,9 @@
   .btn-cancel {
     @apply bg-white hover:bg-red-800  font-bold py-2 px-4 border rounded-lg;
   }
+  .btn-sign-up {
+    @apply bg-white hover:bg-yellow-800 hover:text-white font-bold py-2 px-4 border rounded-lg;
+  }
   .btn-link-nav {
     @apply hover:bg-[#FEAF00] hover:text-white py-2 px-4 rounded-lg;
   }

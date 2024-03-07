@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: students-service-d
+spec:
+  selector:
+    matchLabels:
+      app: students-service-p
+  replicas: 2
+  template:
+    metadata:
+      labels:
+        app: students-service-p
+    spec:
+      containers:
+        - name: students-service-c
+          image: students-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8080
+          env:
+            - name: DB_URL
+              value: jdbc:mysql://mysql-db-s:3306/students_db
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: "0936"
+            - name: SERVER_PORT
+              value: "8080"

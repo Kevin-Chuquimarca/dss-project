@@ -34,3 +34,17 @@ export interface User {
   username: string
   password: string
 }
+
+export interface LoginResponse {
+  jwt: string
+  idBanner: string
+  username: string
+  roles: string
+}
+
+export interface BookAndAuthor {
+  isbn: string
+  title: string
+  name: string
+  lastname: string
+}

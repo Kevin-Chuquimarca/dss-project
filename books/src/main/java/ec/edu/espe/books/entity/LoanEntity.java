@@ -6,7 +6,6 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Date;
-import java.util.Objects;
 
 @Entity
 @Table(name = "loan", schema = "books_db")

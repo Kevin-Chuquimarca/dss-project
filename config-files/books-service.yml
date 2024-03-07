@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: books-service-d
+spec:
+  selector:
+    matchLabels:
+      app: books-service-p
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: books-service-p
+    spec:
+      containers:
+        - name: books-service-c
+          image: books-service:latest
+          imagePullPolicy: Never
+          ports:
+            - containerPort: 8082
+          env:
+            - name: DB_URL
+              value: jdbc:mysql://mysql-db-s:3306/books_db
+            - name: DB_USERNAME
+              value: root
+            - name: DB_PASSWORD
+              value: "0936"
+            - name: SERVER_PORT
+              value: "8090"

@@ -27,12 +27,18 @@ public class UserService implements UserDetailsService {
 
     public String createUser(UserEntity userInfo) {
         userInfo.setPassword(passwordEncoder.encode(userInfo.getPassword()));
+        userInfo.setRoles("ROLE_USER");
         userRepository.save(userInfo);
         return "User Added Successfully";
     }
 
     public UserEntity readUserById(String idBanner) {
         Optional<UserEntity> userSaved = userRepository.findByIdBanner(idBanner);
+        return userSaved.orElse(null);
+    }
+
+    public UserEntity readUserByUsername(String username) {
+        Optional<UserEntity> userSaved = userRepository.findByUsername(username);
         return userSaved.orElse(null);
     }
 

@@ -1,5 +1,6 @@
 package ec.edu.espe.students.controller;
 
+import ec.edu.espe.students.dto.LoginResponse;
 import ec.edu.espe.students.entity.AuthRequest;
 import ec.edu.espe.students.entity.UserEntity;
 import ec.edu.espe.students.service.JwtService;
@@ -63,10 +64,12 @@ public class UserController {
     }
 
     @PostMapping("/generateToken")
-    public String authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
+    public LoginResponse authenticateAndGetToken(@RequestBody AuthRequest authRequest) {
         Authentication authentication = authenticationManager.authenticate(new UsernamePasswordAuthenticationToken(authRequest.getUsername(), authRequest.getPassword()));
         if (authentication.isAuthenticated()) {
-            return jwtService.generateToken(authRequest.getUsername());
+            UserEntity userEntity = userService.readUserByUsername(authRequest.getUsername());
+            String jwt = jwtService.generateToken(authRequest.getUsername());
+            return new LoginResponse(jwt, userEntity.getIdBanner(), userEntity.getName(), userEntity.getLastname(), userEntity.getUsername(), userEntity.getEmail(), userEntity.getPhone(), userEntity.getRoles());
         } else {
             throw new UsernameNotFoundException("invalid user request !");
         }
