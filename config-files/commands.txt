@@ -1,0 +1,13 @@
+BUILD DOCKER IMAGES
+in path: dss-project/books
+run: docker build -t books-service .
+
+in path: dss-project/students
+run: docker build -t students-service .
+
+
+DEPLOY IN KUBERNETES
+kubectl apply -f secrets.yml
+kubectl apply -f mysql.yml
+kubectl apply -f students.yml
+kubectl apply -f books.yml
