@@ -1,6 +1,11 @@
+'use client'
+
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 export default function StudentsNav() {
+  const params = useParams<{ idBanner: string }>()
+
   return (
     <>
       <nav className="h-1/2">
@@ -9,7 +14,7 @@ export default function StudentsNav() {
           <li>
             <Link
               className="btn-link-nav flex w-48"
-              href="/dashboard/students/library"
+              href={`/dashboard/${params.idBanner}/library`}
             >
               Libros
             </Link>

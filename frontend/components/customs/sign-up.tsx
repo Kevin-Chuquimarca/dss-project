@@ -32,64 +32,69 @@ export default function SignUp() {
         </div>
         <hr />
         <div>
-          <label className="flex" htmlFor="username">
+          <label className="flex" htmlFor="idBanner">
             ID Banner
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. L00387229"
             type="text"
-            {...register('idBanner', { required: true })}
+            {...register('idBanner', { required: true, maxLength: 9 })}
           />
-          {formState.errors.username && <span>This field is required</span>}
+          {formState.errors.idBanner && <span>This field is required</span>}
         </div>
         <div>
-          <label className="flex" htmlFor="username">
+          <label className="flex" htmlFor="name">
             Nombre
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. Marco"
             type="text"
-            {...register('name', { required: true })}
+            {...register('name', { required: true, maxLength: 20 })}
           />
-          {formState.errors.username && <span>This field is required</span>}
+          {formState.errors.name && <span>This field is required</span>}
         </div>
         <div>
-          <label className="flex" htmlFor="username">
+          <label className="flex" htmlFor="lastname">
             Apellido
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. Iza"
             type="text"
-            {...register('lastname', { required: true })}
+            {...register('lastname', { required: true, maxLength: 20 })}
           />
-          {formState.errors.username && <span>This field is required</span>}
+          {formState.errors.lastname && <span>This field is required</span>}
         </div>
         <div>
-          <label className="flex" htmlFor="username">
+          <label className="flex" htmlFor="email">
             Correo Electrónico
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. example@correo.com"
             type="text"
-            {...register('email', { required: true })}
+            {...register('email', { required: true, maxLength: 30 })}
           />
-          {formState.errors.username && <span>This field is required</span>}
+          {formState.errors.email && <span>This field is required</span>}
         </div>
         <div>
-          <label className="flex" htmlFor="password">
+          <label className="flex" htmlFor="phone">
             Número de Teléfono
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. 0999999999"
-            type="number"
-            {...register('phone', { required: true })}
+            type="text"
+            {...register('phone', {
+              required: true,
+              maxLength: 10,
+              minLength: 10,
+              pattern: /^\d*$/,
+            })}
           />
-          {formState.errors.password && <span>This field is required</span>}
+          {formState.errors.phone && <span>This field is required</span>}
         </div>
         <div>
           <label className="flex" htmlFor="username">
@@ -99,20 +104,20 @@ export default function SignUp() {
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="e.g. maiza4"
             type="text"
-            {...register('username', { required: true })}
+            {...register('username', { required: true, maxLength: 20 })}
           />
           {formState.errors.username && <span>This field is required</span>}
         </div>
         <div>
-          <label className="flex" htmlFor="username">
+          <label className="flex" htmlFor="password">
             Contraseña
           </label>
           <input
             className="py-2 px-4 border rounded-md min-w-full"
             type="password"
-            {...register('password', { required: true })}
+            {...register('password', { required: true, maxLength: 20 })}
           />
-          {formState.errors.username && <span>This field is required</span>}
+          {formState.errors.password && <span>This field is required</span>}
         </div>
         <hr />
         <BtnSubmit

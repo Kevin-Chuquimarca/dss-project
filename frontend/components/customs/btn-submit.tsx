@@ -9,7 +9,7 @@ export function BtnSubmit(props: {
     <button
       className={props.btnColor ?? 'btn-success'}
       type="submit"
-      disabled={props.formState.isSubmitted}
+      disabled={props.formState.isSubmitting}
     >
       {props.textBtn}
     </button>

@@ -1,7 +1,7 @@
 import { Author } from '@/src/models/model'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { Dispatch, SetStateAction, useEffect, useState } from 'react'
-import { getAuthors, updateAuthor } from '@/src/utils/providers/provider'
+import { Dispatch, SetStateAction, useState } from 'react'
+import { updateAuthor } from '@/src/utils/providers/provider'
 import { BtnSubmit } from '@/components/customs/btn-submit'
 import ModalTemplateImg from '@/components/customs/modal-template-img'
 
@@ -10,23 +10,18 @@ export default function UpdateAuthorModal(props: {
   readonly author: Author
 }) {
   const [showModal, setShowModal] = useState(false)
-  const [authors, setAuthors] = useState<Author[]>([])
   const { register, handleSubmit, formState } = useForm<Author>()
   const onSubmit: SubmitHandler<Author> = (data) => {
     updateAuthor(data)
-      .then(() => {
-        props.setAuthors((prev) => [...prev, data])
+      .then((resData) => {
+        props.setAuthors((prev) =>
+          prev.filter((author) => author.id !== resData.id).concat(resData)
+        )
         setShowModal(!showModal)
         alert('Autor Actualizado')
       })
       .catch((error) => alert(error))
   }
-
-  useEffect(() => {
-    getAuthors()
-      .then((data) => setAuthors(data))
-      .catch((error) => alert(error))
-  }, [])
 
   return (
     <ModalTemplateImg
@@ -36,8 +31,7 @@ export default function UpdateAuthorModal(props: {
       setShowModal={setShowModal}
     >
       <form onSubmit={handleSubmit(onSubmit)}>
-        <h3 className="font-bold text-xl">Actualizar Préstamo</h3>
-        <p>Crear un nuevo autor</p>
+        <h3 className="font-bold text-xl">Actualizar Autor</h3>
         <hr className="my-5" />
         <div className="space-y-3">
           <label className="flex" htmlFor="id">
@@ -46,7 +40,10 @@ export default function UpdateAuthorModal(props: {
           <input
             className="border rounded-lg p-3"
             readOnly
-            {...register('id', { required: true, value: props.author.id })}
+            {...register('id', {
+              required: true,
+              value: props.author.id,
+            })}
           />
           {formState.errors.id && <span>This field is required</span>}
           <label className="flex" htmlFor="name">
@@ -54,7 +51,11 @@ export default function UpdateAuthorModal(props: {
           </label>
           <input
             className="border rounded-lg p-3"
-            {...register('name', { required: true, value: props.author.name })}
+            {...register('name', {
+              required: true,
+              value: props.author.name,
+              maxLength: 30,
+            })}
           />
           {formState.errors.name && <span>This field is required</span>}
           <label className="flex" htmlFor="lastname">
@@ -65,6 +66,7 @@ export default function UpdateAuthorModal(props: {
             {...register('lastname', {
               required: true,
               value: props.author.lastname,
+              maxLength: 30,
             })}
           />
           {formState.errors.lastname && <span>This field is required</span>}

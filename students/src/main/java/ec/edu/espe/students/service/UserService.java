@@ -56,4 +56,9 @@ public class UserService implements UserDetailsService {
         userRepository.deleteById(id);
         return "User Deleted Successfully";
     }
+
+    public String getRole(String idBanner) {
+        Optional<UserEntity> userSaved = userRepository.findByIdBanner(idBanner);
+        return userSaved.map(UserEntity::getRoles).orElse(null);
+    }
 }

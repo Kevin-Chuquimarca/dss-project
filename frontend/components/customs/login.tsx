@@ -1,10 +1,11 @@
 'use client'
 
+import { BtnSubmit } from '@/components/customs/btn-submit'
 import { SubmitHandler, useForm } from 'react-hook-form'
-import { BtnSubmit } from './btn-submit'
-import { User } from '@/src/models/model'
 import { login } from '@/src/utils/providers/users'
+import { saveUserInfo } from '@/src/libs/libs'
 import { useRouter } from 'next/navigation'
+import { User } from '@/src/models/model'
 import Link from 'next/link'
 
 export default function Login() {
@@ -13,14 +14,11 @@ export default function Login() {
   const onSubmit: SubmitHandler<User> = (data) => {
     login(data)
       .then((res) => {
-        localStorage.setItem('jwt', res.jwt)
-        localStorage.setItem('username', res.username)
-        localStorage.setItem('roles', res.roles)
-        localStorage.setItem('idBanner', res.idBanner)
+        saveUserInfo(res)
         if (res.roles === 'ROLE_USER') {
-          router.push('/dashboard/students/library')
-        } else {
-          router.push('/dashboard/admin/books')
+          router.push(`/dashboard/${res.idBanner}/library`)
+        } else if (res.roles === 'ROLE_ADMIN') {
+          router.push(`/dashboard/${res.idBanner}/books`)
         }
       })
       .catch((error) => {
@@ -47,7 +45,7 @@ export default function Login() {
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="Ingrese su usuario"
             type="text"
-            {...register('username', { required: true })}
+            {...register('username', { required: true, maxLength: 20 })}
           />
           {formState.errors.username && <span>This field is required</span>}
         </div>
@@ -59,7 +57,7 @@ export default function Login() {
             className="py-2 px-4 border rounded-md min-w-full"
             placeholder="Ingrese su contraseña"
             type="password"
-            {...register('password', { required: true })}
+            {...register('password', { required: true, maxLength: 20 })}
           />
           {formState.errors.password && <span>This field is required</span>}
         </div>

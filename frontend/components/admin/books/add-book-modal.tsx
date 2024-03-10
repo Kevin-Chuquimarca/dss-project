@@ -13,8 +13,8 @@ export default function AddBookModal(props: {
   const { register, handleSubmit, formState } = useForm<Book>()
   const onSubmit: SubmitHandler<Book> = (data) => {
     addBook(data)
-      .then(() => {
-        props.setBooks((prev) => [...prev, data])
+      .then((resData) => {
+        props.setBooks((prev) => [...prev, resData])
         setShowModal(!showModal)
         alert('Libro agregado')
       })
@@ -45,7 +45,7 @@ export default function AddBookModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. 325-5215-256834"
-            {...register('isbn', { required: true })}
+            {...register('isbn', { required: true, maxLength: 17 })}
           />
           {formState.errors.isbn && <span>This field is required</span>}
           <label className="flex" htmlFor="title">
@@ -54,7 +54,7 @@ export default function AddBookModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. Viaje al Centro de la Tierra"
-            {...register('title', { required: true })}
+            {...register('title', { required: true, maxLength: 50 })}
           />
           {formState.errors.title && <span>This field is required</span>}
           <label className="flex" htmlFor="id">

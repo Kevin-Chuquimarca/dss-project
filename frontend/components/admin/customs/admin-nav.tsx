@@ -1,6 +1,11 @@
+'use client'
+
 import Link from 'next/link'
+import { useParams } from 'next/navigation'
 
 export default function AdminNav() {
+  const params = useParams<{ idBanner: string }>()
+
   return (
     <>
       <nav className="h-1/2">
@@ -9,7 +14,7 @@ export default function AdminNav() {
           <li>
             <Link
               className="btn-link-nav flex w-48"
-              href="/dashboard/admin/books"
+              href={`/dashboard/${params.idBanner}/books`}
             >
               Libros
             </Link>
@@ -17,7 +22,7 @@ export default function AdminNav() {
           <li>
             <Link
               className="btn-link-nav flex w-48"
-              href="/dashboard/admin/loans"
+              href={`/dashboard/${params.idBanner}/loans`}
             >
               Préstamos
             </Link>
@@ -25,7 +30,7 @@ export default function AdminNav() {
           <li>
             <Link
               className="btn-link-nav flex w-48"
-              href="/dashboard/admin/authors"
+              href={`/dashboard/${params.idBanner}/authors`}
             >
               Autores
             </Link>

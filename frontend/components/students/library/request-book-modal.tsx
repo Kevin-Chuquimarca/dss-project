@@ -46,10 +46,14 @@ export default function RequestBookModal(props: {
             className="border rounded-lg p-3"
             placeholder="e.g. 325-5215-256834"
             readOnly
-            {...register('isbn', { required: true, value: props.book.isbn })}
+            {...register('isbn', {
+              required: true,
+              value: props.book.isbn,
+              maxLength: 17,
+            })}
           />
           {formState.errors.isbn && <span>This field is required</span>}
-          <label className="flex" htmlFor="title">
+          <label className="flex" htmlFor="dateReturn">
             Fecha de Devolución
           </label>
           <input

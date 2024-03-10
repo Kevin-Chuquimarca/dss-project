@@ -14,8 +14,10 @@ export default function UpdateBookModal(props: {
   const { register, handleSubmit, formState } = useForm<Book>()
   const onSubmit: SubmitHandler<Book> = (data) => {
     updateBook(data)
-      .then(() => {
-        props.setBooks((prev) => [...prev, data])
+      .then((resData) => {
+        props.setBooks((prev) =>
+          prev.filter((book) => book.isbn !== resData.isbn).concat(resData)
+        )
         setShowModal(!showModal)
         alert('Libro Actualizado')
       })
@@ -47,7 +49,11 @@ export default function UpdateBookModal(props: {
             className="border rounded-lg p-3"
             placeholder="e.g. 325-5215-256834"
             readOnly
-            {...register('isbn', { required: true, value: props.book.isbn })}
+            {...register('isbn', {
+              required: true,
+              value: props.book.isbn,
+              maxLength: 17,
+            })}
           />
           {formState.errors.isbn && <span>This field is required</span>}
           <label className="flex" htmlFor="title">
@@ -56,7 +62,11 @@ export default function UpdateBookModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. Viaje al Centro de la Tierra"
-            {...register('title', { required: true, value: props.book.title })}
+            {...register('title', {
+              required: true,
+              value: props.book.title,
+              maxLength: 50,
+            })}
           />
           {formState.errors.title && <span>This field is required</span>}
           <label className="flex" htmlFor="id">

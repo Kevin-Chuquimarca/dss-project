@@ -13,8 +13,8 @@ export default function AddLoanModal(props: {
   const { register, handleSubmit, formState } = useForm<Loan>()
   const onSubmit: SubmitHandler<Loan> = (data) => {
     addLoan(data)
-      .then(() => {
-        props.setLoans((prev) => [...prev, data])
+      .then((resData) => {
+        props.setLoans((prev) => [...prev, resData])
         setShowModal(!showModal)
         alert('Préstamo agregado')
       })
@@ -40,11 +40,11 @@ export default function AddLoanModal(props: {
         <hr className="my-5" />
         <div className="space-y-3">
           <label className="flex" htmlFor="isbn">
-            ISBN
+            Libro
           </label>
           <select
             className="border rounded-lg p-3 w-full"
-            {...register('isbn', { required: true })}
+            {...register('isbn', { required: true, maxLength: 17 })}
           >
             {books.map((book) => (
               <option key={book.isbn} value={book.isbn}>
@@ -86,7 +86,7 @@ export default function AddLoanModal(props: {
           <input
             className="border rounded-lg p-3"
             placeholder="e.g. L00387229"
-            {...register('idBanner', { required: true })}
+            {...register('idBanner', { required: true, maxLength: 9 })}
           />
           {formState.errors.idBanner && <span>This field is required</span>}
         </div>

@@ -21,6 +21,8 @@ export async function addBook(book: Book) {
       body: JSON.stringify(book),
     })
     if (!res.ok) throw new Error('Error al agregar el libro')
+    const data: Book = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }
@@ -36,6 +38,8 @@ export async function updateBook(book: Book) {
       body: JSON.stringify(book),
     })
     if (!res.ok) throw new Error('Error al actualizar el libro')
+    const data: Book = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }
@@ -72,6 +76,8 @@ export async function addAuthor(author: Omit<Author, 'id'>) {
       body: JSON.stringify(author),
     })
     if (!res.ok) throw new Error('Error al agregar el autor')
+    const data: Author = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }
@@ -87,6 +93,8 @@ export async function updateAuthor(author: Author) {
       body: JSON.stringify(author),
     })
     if (!res.ok) throw new Error('Error al actualizar el autor')
+    const data: Author = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }
@@ -123,6 +131,8 @@ export async function addLoan(loan: Omit<Loan, 'cod'>) {
       body: JSON.stringify(loan),
     })
     if (!res.ok) throw new Error('Error al agregar el préstamo')
+    const data: Loan = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }
@@ -138,6 +148,8 @@ export async function updateLoan(loan: Loan) {
       body: JSON.stringify(loan),
     })
     if (!res.ok) throw new Error('Error al actualizar el préstamo')
+    const data: Loan = await res.json()
+    return data
   } catch (error: any) {
     throw new Error(error)
   }

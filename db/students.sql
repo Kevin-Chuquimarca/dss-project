@@ -14,3 +14,7 @@ create table user
     roles           varchar(50) not null,
     primary key (id_banner)
 );
+
+INSERT INTO user VALUES 
+('L00384629','Kevin','Chuquimarca','kevin0936','$2a$10$uMj49tQD69tjbrFF2BhoZe7xuo352I0aQ6Q7Thh3dMhgtKa6AyKBq','kschuquimarca@espe.edu.ec','0984991746','ROLE_ADMIN'),
+('L00384630','Marco','Iza','maiza','$2a$10$t0UGtiWAGO/xdfrUOP8ni.UYVTag4o8JxuPshuwLe..eXbkoUMkjG','maiza@espe.edu.ec','0984991746','ROLE_USER');

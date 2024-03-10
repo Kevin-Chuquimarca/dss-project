@@ -75,4 +75,8 @@ public class UserController {
         }
     }
 
+    @GetMapping("/getRole/{idBanner}")
+    public String getRole(@PathVariable String idBanner) {
+        return userService.getRole(idBanner);
+    }
 }

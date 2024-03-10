@@ -19,4 +19,21 @@ spec:
             - containerPort: 3306
           env:
             - name: MYSQL_ROOT_PASSWORD
-              value: "0936"
+              valueFrom:
+                secretKeyRef:
+                  name: mysql-secret
+                  key: password
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  name: mysql-db-s
+spec:
+  selector:
+    app: mysql-db-p
+  ports:
+    - protocol: TCP
+      port: 3306
+      targetPort: 3306
